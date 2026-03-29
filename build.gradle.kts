@@ -78,7 +78,7 @@ dependencies {
     compileOnly(libs.androidx.ui.tooling.preview)
     compileOnly(libs.androidx.foundation)
     implementation(platform(libs.androidx.compose.bom))
-    debugImplementation(project(":mapconductor-core"))
+    debugImplementation(project(":android-sdk-core"))
     releaseImplementation("com.mapconductor:core:$coreLibraryVersion")
 
     testImplementation(libs.junit)
