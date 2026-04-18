@@ -72,26 +72,29 @@ kotlin {
     }
 }
 
+// Publishing configuration
+val libraryGroupId = project.findProperty("libraryGroupId") as String? ?: "com.mapconductor"
+val libraryArtifactId = "icons"
+val libraryVersion = project.findProperty("libraryVersion") as String? ?: "1.0.0"
+val coreLibraryVersion = project.findProperty("coreLibraryVersion") as String? ?: "1.0.0"
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
     compileOnly(libs.androidx.ui.tooling.preview)
     compileOnly(libs.androidx.foundation)
     implementation(platform(libs.androidx.compose.bom))
-    debugImplementation(project(":android-sdk-core"))
-    releaseImplementation("com.mapconductor:core:$coreLibraryVersion")
+    if (findProject(":android-sdk-core") != null) {
+        implementation(project(":android-sdk-core"))
+    } else {
+        implementation("com.mapconductor:core:$coreLibraryVersion")
+    }
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.androidx.ui.tooling)
 }
-
-// Publishing configuration
-val libraryGroupId = project.findProperty("libraryGroupId") as String? ?: "com.mapconductor"
-val libraryArtifactId = "icons"
-val libraryVersion = project.findProperty("libraryVersion") as String? ?: "1.0.0"
-val coreLibraryVersion = project.findProperty("coreLibraryVersion") as String? ?: "1.0.0"
 
 // Set project version for NMCP plugin
 version = libraryVersion
