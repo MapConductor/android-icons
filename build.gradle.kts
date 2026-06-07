@@ -4,6 +4,7 @@
     id("org.jlleitschuh.gradle.ktlint")
     id("maven-publish")
     id("signing")
+    id("com.gradleup.nmcp") version "1.5.0"
 }
 
 ktlint {

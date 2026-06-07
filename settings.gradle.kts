@@ -15,16 +15,19 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
-        maven {
-            name = "GithubPackages"
-            url = uri("https://maven.pkg.github.com/mapconductor/android-icons")
-            credentials {
-                username = System.getenv("GPR_USER")
-                password = System.getenv("GPR_TOKEN")
+        if (!System.getenv("GPR_USER").isNullOrEmpty() && !System.getenv("GPR_TOKEN").isNullOrEmpty()) {
+            maven {
+                name = "GithubPackages"
+                url = uri("https://maven.pkg.github.com/mapconductor/android-icons")
+                credentials {
+                    username = System.getenv("GPR_USER")
+                    password = System.getenv("GPR_TOKEN")
+                }
+                content { includeGroup("com.mapconductor") }
             }
-            content { includeGroup("com.mapconductor") }
         }
     }
 }
