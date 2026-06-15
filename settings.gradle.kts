@@ -29,7 +29,17 @@ dependencyResolutionManagement {
                 content { includeGroup("com.mapconductor") }
             }
         }
+        if (!System.getenv("GPR_USER").isNullOrEmpty() || !System.getenv("GITHUB_ACTOR").isNullOrEmpty()) {
+            maven {
+                name = "GithubPackages-core"
+                url = uri("https://maven.pkg.github.com/MapConductor/android-sdk-core")
+                credentials {
+                    username = System.getenv("GPR_USER") ?: System.getenv("GITHUB_ACTOR") ?: ""
+                    password = System.getenv("GPR_TOKEN") ?: System.getenv("GITHUB_TOKEN") ?: ""
+                }
+            }
+        }
     }
 }
 
-rootProject.name = "mapconductor-icons"
+rootProject.name = "android-icons"
