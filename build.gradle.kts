@@ -74,10 +74,10 @@ dependencies {
     compileOnly(libs.androidx.ui.tooling.preview)
     compileOnly(libs.androidx.foundation)
     implementation(platform(libs.androidx.compose.bom))
-    if (findProject(":android-sdk-core") != null) {
-        implementation(project(":android-sdk-core"))
+    if (findProject(":android-sdk-compose") != null) {
+        implementation(project(":android-sdk-compose"))
     } else {
-        implementation("com.mapconductor:core:$coreLibraryVersion")
+        implementation("com.mapconductor:compose:$coreLibraryVersion")
     }
 
     testImplementation(libs.junit)
