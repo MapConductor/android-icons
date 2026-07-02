@@ -8,11 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.mapconductor.core.BitmapIconCache
@@ -26,9 +29,7 @@ import android.graphics.Bitmap.createBitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.PointF
 import android.graphics.drawable.Drawable
-import android.util.SizeF
 
 class RightTailInfoBubbleIcon(
     private val properties: IconProperties,
@@ -40,7 +41,7 @@ class RightTailInfoBubbleIcon(
         val fillColor: Color,
         val labelTextColor: Color,
         val scale: Float,
-        val iconSize: Float,
+        val iconSize: Dp,
         val debug: Boolean,
     )
 
@@ -51,7 +52,7 @@ class RightTailInfoBubbleIcon(
         fillColor: Color = Color.LightGray,
         labelTextColor: Color = Color.Yellow,
         scale: Float = 1f,
-        iconSize: Float = MarkerIconSize.Small,
+        iconSize: Dp = MarkerIconSize.Small,
         debug: Boolean = false,
     ) : this(
         IconProperties(
@@ -72,10 +73,10 @@ class RightTailInfoBubbleIcon(
     val fillColor: Color by properties::fillColor
     val labelTextColor: Color by properties::labelTextColor
     override val scale: Float by properties::scale
-    override val iconSize: Float by properties::iconSize
+    override val iconSize: Dp by properties::iconSize
     override val debug: Boolean by properties::debug
-    override val anchor: PointF = PointF(0.5f, 1.0f)
-    override val infoAnchor: PointF = PointF(0.5f, 1.0f)
+    override val anchor: Offset = Offset(0.5f, 1.0f)
+    override val infoAnchor: Offset = Offset(0.5f, 1.0f)
 
     fun copy(
         iconDrawable: Drawable = this.iconDrawable,
@@ -83,7 +84,7 @@ class RightTailInfoBubbleIcon(
         snippet: String = this.snippet,
         fillColor: Color = this.fillColor,
         scale: Float = this.scale,
-        iconSize: Float,
+        iconSize: Dp,
     ): RightTailInfoBubbleIcon =
         RightTailInfoBubbleIcon(
             properties.copy(
@@ -99,7 +100,7 @@ class RightTailInfoBubbleIcon(
 
     fun copy(
         scale: Float,
-        iconSize: Float,
+        iconSize: Dp,
     ): RightTailInfoBubbleIcon = copy(scale = scale, iconSize = iconSize)
 
     override fun equals(other: Any?): Boolean = other is RightTailInfoBubbleIcon && properties == other.properties
@@ -114,7 +115,7 @@ class RightTailInfoBubbleIcon(
             return it
         }
 
-        val drawableSize = ResourceProvider.dpToPx(iconSize * scale).toFloat()
+        val drawableSize = ResourceProvider.dpToPx(iconSize.value * scale).toFloat()
         val drawableInnerPadding = drawableSize * 0.1f
         val contentMargin = drawableSize * 0.2f
 
@@ -204,8 +205,8 @@ class RightTailInfoBubbleIcon(
 
         val result =
             BitmapIcon(
-                bitmap = bitmap, anchor = PointF(0.5f, 1.0f),
-                size = SizeF(canvasWidth, canvasHeight + pointerHeight),
+                bitmap = bitmap, anchor = Offset(0.5f, 1.0f),
+                size = Size(canvasWidth, canvasHeight + pointerHeight),
             )
 
         BitmapIconCache.put(id, result)

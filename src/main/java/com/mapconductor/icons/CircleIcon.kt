@@ -8,10 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.createBitmap
 import com.mapconductor.core.BitmapIconCache
@@ -21,9 +24,7 @@ import com.mapconductor.core.marker.BitmapIcon
 import com.mapconductor.settings.Settings
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.PointF
 import android.util.DisplayMetrics
-import android.util.SizeF
 
 class CircleIcon(
     private val properties: IconProperties,
@@ -31,18 +32,18 @@ class CircleIcon(
     data class IconProperties(
         val fillColor: Color,
         val strokeColor: Color,
-        val strokeWidth: Float,
+        val strokeWidth: Dp,
         val scale: Float,
-        val iconSize: Float,
+        val iconSize: Dp,
         val debug: Boolean,
     )
 
     constructor(
         fillColor: Color = Color.Red,
         strokeColor: Color = Color.White,
-        strokeWidth: Float = Settings.Default.iconStroke,
+        strokeWidth: Dp = Settings.Default.iconStroke,
         scale: Float = 1f,
-        iconSize: Float = Settings.Default.iconSize,
+        iconSize: Dp = Settings.Default.iconSize,
         debug: Boolean = false,
     ) : this(
         IconProperties(fillColor, strokeColor, strokeWidth, scale, iconSize, debug),
@@ -51,20 +52,20 @@ class CircleIcon(
     // プロパティの委譲
     val fillColor: Color by properties::fillColor
     val strokeColor: Color by properties::strokeColor
-    val strokeWidth: Float by properties::strokeWidth
+    val strokeWidth: Dp by properties::strokeWidth
     override val scale: Float by properties::scale
-    override val iconSize: Float by properties::iconSize
+    override val iconSize: Dp by properties::iconSize
     override val debug: Boolean by properties::debug
-    override val anchor: PointF = PointF(0.0f, 0.5f)
-    override val infoAnchor: PointF = PointF(0.5f, 0.5f)
+    override val anchor: Offset = Offset(0.0f, 0.5f)
+    override val infoAnchor: Offset = Offset(0.5f, 0.5f)
 
     // data classのcopyを活用した独自copyメソッド
     fun copy(
         fillColor: Color = this.fillColor,
         strokeColor: Color = this.strokeColor,
-        strokeWidth: Float = this.strokeWidth,
+        strokeWidth: Dp = this.strokeWidth,
         scale: Float = this.scale,
-        iconSize: Float = this.iconSize,
+        iconSize: Dp = this.iconSize,
     ): CircleIcon =
         CircleIcon(
             properties.copy(
@@ -78,7 +79,7 @@ class CircleIcon(
 
     fun copy(
         scale: Float,
-        iconSize: Float,
+        iconSize: Dp,
     ): CircleIcon = copy(scale = scale, iconSize = iconSize)
 
     // equals, hashCode, toStringも委譲
@@ -94,7 +95,7 @@ class CircleIcon(
             return it
         }
 
-        val canvasSize = ResourceProvider.dpToPx(iconSize * scale)
+        val canvasSize = ResourceProvider.dpToPx(iconSize.value * scale)
 
         val bitmap = createBitmap(canvasSize.toInt(), canvasSize.toInt())
         // Set bitmap density to control map provider scaling
@@ -157,7 +158,7 @@ class CircleIcon(
             BitmapIcon(
                 bitmap = bitmap,
                 anchor = anchor,
-                size = SizeF(canvasSize.toFloat(), canvasSize.toFloat()),
+                size = Size(canvasSize.toFloat(), canvasSize.toFloat()),
             )
         BitmapIconCache.put(id, result)
         return result
