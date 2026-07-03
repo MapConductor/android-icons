@@ -69,11 +69,9 @@ val coreLibraryVersion = project.findProperty("coreLibraryVersion") as String? ?
 dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
-    compileOnly(platform(libs.androidx.compose.bom))
-    debugImplementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     compileOnly(libs.androidx.ui.tooling.preview)
-    compileOnly(libs.androidx.foundation)
+    implementation(libs.androidx.foundation)
     if (findProject(":android-sdk-compose") != null) {
         implementation(project(":android-sdk-compose"))
     } else {
