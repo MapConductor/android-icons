@@ -24,15 +24,13 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        aarMetadata {
+            minCompileSdk = project.property("compileSdk").toString().toInt()
+        }
     }
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion =
-            project.property("kotlinCompilerExtensionVersion").toString()
     }
 
     buildTypes {
@@ -70,10 +68,12 @@ val coreLibraryVersion = project.findProperty("coreLibraryVersion") as String? ?
 
 dependencies {
 
+    implementation(platform(libs.androidx.compose.bom))
+    compileOnly(platform(libs.androidx.compose.bom))
+    debugImplementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     compileOnly(libs.androidx.ui.tooling.preview)
     compileOnly(libs.androidx.foundation)
-    implementation(platform(libs.androidx.compose.bom))
     if (findProject(":android-sdk-compose") != null) {
         implementation(project(":android-sdk-compose"))
     } else {
