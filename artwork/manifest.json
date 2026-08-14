@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "common",
+  "collection": "CommonMapIcons",
+  "android": {
+    "repository": "android-icons",
+    "namespace": "com.mapconductor.icons"
+  },
+  "ios": {
+    "repository": "ios-icons",
+    "module": "MapConductorIcons"
+  },
+  "react": {
+    "repository": "react-icons"
+  },
+  "icons": [
+    {
+      "name": "hospital",
+      "id": "hospital",
+      "file": "hospital.svg",
+      "description": "Hospital or medical facility"
+    }
+  ]
+}

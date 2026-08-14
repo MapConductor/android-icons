@@ -13,6 +13,22 @@ https://docs-android.mapconductor.com/setup/
 
 ## Icons
 
+### PinGlyphIcon
+
+Places an explicitly selected map glyph in the default pin. MapConductor never
+changes the glyph from the device locale.
+
+```kotlin
+val hospital = PinGlyphIcon(
+    glyph = CommonMapIcons.hospital,
+    fillColor = Color(0xFF0067C0),
+    glyphColor = Color.White,
+)
+```
+
+Region-specific symbols are distributed separately (for example `icons-jp`)
+and are selected by the application in the same way.
+
 ### CircleIcon
 
 A simple filled circle icon.

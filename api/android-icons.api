@@ -37,6 +37,10 @@ public final class com.mapconductor.icons.CircleIcon$IconProperties {
 }
 public final class com.mapconductor.icons.CircleIconKt {
 }
+public final class com.mapconductor.icons.CommonMapIcons {
+  public static final com.mapconductor.icons.CommonMapIcons INSTANCE;
+  public final com.mapconductor.icons.MapIconGlyph getHospital();
+}
 public final class com.mapconductor.icons.FlagIcon extends com.mapconductor.core.marker.AbstractMarkerIcon {
   public com.mapconductor.icons.FlagIcon(com.mapconductor.icons.FlagIcon$IconProperties);
   public com.mapconductor.icons.FlagIcon(long, long, float, float, float, boolean, int, kotlin.jvm.internal.DefaultConstructorMarker);
@@ -76,6 +80,30 @@ public final class com.mapconductor.icons.FlagIcon$IconProperties {
   public boolean equals(java.lang.Object);
 }
 public final class com.mapconductor.icons.FlagIconKt {
+}
+public final class com.mapconductor.icons.MapIconGlyph {
+  public com.mapconductor.icons.MapIconGlyph(java.lang.String, java.lang.String, float);
+  public com.mapconductor.icons.MapIconGlyph(java.lang.String, java.lang.String, float, int, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final java.lang.String getId();
+  public final java.lang.String getPathData();
+  public final float getViewBoxSize();
+  public final java.lang.String component1();
+  public final java.lang.String component2();
+  public final float component3();
+  public final com.mapconductor.icons.MapIconGlyph copy(java.lang.String, java.lang.String, float);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+public final class com.mapconductor.icons.PinGlyphIcon extends com.mapconductor.core.marker.AbstractDefaultIcon {
+  public com.mapconductor.icons.PinGlyphIcon(com.mapconductor.icons.MapIconGlyph, long, long, long, float, float, long, float, boolean, int, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final com.mapconductor.icons.MapIconGlyph getGlyph();
+  public final long getFillColor-0d7_KjU();
+  public final long getGlyphColor-0d7_KjU();
+  protected void drawMarkerFill(android.graphics.Canvas, android.graphics.Path, float, float);
+  protected java.lang.Object getUniqueProperties();
+  public final com.mapconductor.icons.PinGlyphIcon copy-ZZ6XF5E(com.mapconductor.icons.MapIconGlyph, long, long, long, float, float, long, float, boolean);
+  public com.mapconductor.icons.PinGlyphIcon(com.mapconductor.icons.MapIconGlyph, long, long, long, float, float, long, float, boolean, kotlin.jvm.internal.DefaultConstructorMarker);
 }
 public final class com.mapconductor.icons.RightTailInfoBubbleIcon extends com.mapconductor.core.marker.AbstractMarkerIcon {
   public com.mapconductor.icons.RightTailInfoBubbleIcon(com.mapconductor.icons.RightTailInfoBubbleIcon$IconProperties);
