@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
-    id("org.jlleitschuh.gradle.ktlint")
+    alias(libs.plugins.jlleitschuh.ktlint)
     id("maven-publish")
     id("signing")
     id("com.gradleup.nmcp") version "1.5.0"
