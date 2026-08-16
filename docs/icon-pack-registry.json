@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-14",
+  "packs": [
+    {
+      "id": "common",
+      "kind": "common",
+      "status": "active",
+      "android": "com.mapconductor:icons",
+      "ios": "MapConductorIcons",
+      "react": "@mapconductor/react-icons"
+    },
+    {
+      "id": "jp",
+      "kind": "country",
+      "status": "local-preview",
+      "android": "com.mapconductor:icons-jp",
+      "ios": "MapConductorIconsJP",
+      "react": "@mapconductor/react-icons-jp"
+    },
+    {
+      "id": "us",
+      "kind": "country",
+      "status": "local-preview",
+      "android": "com.mapconductor:icons-us",
+      "ios": "MapConductorIconsUS",
+      "react": "@mapconductor/react-icons-us"
+    },
+    {
+      "id": "weather",
+      "kind": "theme",
+      "status": "local-preview",
+      "android": "com.mapconductor:icons-weather",
+      "ios": "MapConductorIconsWeather",
+      "react": "@mapconductor/react-icons-weather"
+    }
+  ]
+}
