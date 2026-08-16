@@ -1,4 +1,5 @@
 [versions]
+composeLibs = "1.7.8"
 agp = "9.2.1"
 kotlin = "2.0.21"
 
@@ -18,9 +19,9 @@ coreKtx = "1.16.0"
 [libraries]
 # Jetpack Compose (with BOM)
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "composeLibs" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "composeLibs" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "composeLibs" }
 
 # Core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
