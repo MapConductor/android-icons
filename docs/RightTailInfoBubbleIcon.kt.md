@@ -7,8 +7,8 @@ class RightTailInfoBubbleIcon(
     iconDrawable: Drawable,
     label: String,
     snippet: String,
-    fillColor: Color = Color.LightGray,
-    labelTextColor: Color = Color.Yellow,
+    fillColor: Color = Color.White,
+    labelTextColor: Color = Color.Black,
     scale: Float = 1f,
     iconSize: Dp = MarkerIconSize.Small,
     debug: Boolean = false,
@@ -45,11 +45,11 @@ The constructor accepts the following parameters to customize the icon's appeara
     - Description: The secondary, smaller text content displayed at the bottom of the bubble.
 - `fillColor`
     - Type: `Color`
-    - Default: `Color.LightGray`
+    - Default: `Color.White`
     - Description: The background color of the info bubble.
 - `labelTextColor`
     - Type: `Color`
-    - Default: `Color.Yellow`
+    - Default: `Color.Black`
     - Description: The color of the primary `label` text.
 - `scale`
     - Type: `Float`

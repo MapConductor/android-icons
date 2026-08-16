@@ -1,144 +1,59 @@
-# MapConductor Icons
+# MapConductor Icons for Android
 
-## Description
+Map-ready Jetpack Compose icon containers and region-neutral glyphs. The map SDK draws the map; this package draws application-owned markers such as a hospital symbol inside a pin, circle, flag, or information bubble.
 
-MapConductor Icons provides a collection of pre-built marker icon types for the MapConductor SDK.
-Each icon implements `MarkerIconInterface` and can be passed directly as the `icon` parameter of `MarkerState`.
+Locale never changes an icon automatically. Choose a regional pack explicitly when local conventions matter.
 
-## Setup
+## Installation
 
-https://docs-android.mapconductor.com/setup/
-
-------------------------------------------------------------------------
-
-## Icons
-
-### PinGlyphIcon
-
-Places an explicitly selected map glyph in the default pin. MapConductor never
-changes the glyph from the device locale.
+Add Maven Central and the library dependency:
 
 ```kotlin
-val hospital = PinGlyphIcon(
+// settings.gradle.kts
+dependencyResolutionManagement {
+    repositories { mavenCentral() }
+}
+
+// app/build.gradle.kts
+dependencies {
+    implementation("com.mapconductor:icons:1.2.0")
+}
+```
+
+The glyph API documented below is available on the `1.3.0` branch and will be included in the next registry release.
+
+## Quick start
+
+```kotlin
+import androidx.compose.ui.graphics.Color
+import com.mapconductor.icons.CommonMapIcons
+import com.mapconductor.icons.PinGlyphIcon
+
+val hospitalMarker = PinGlyphIcon(
     glyph = CommonMapIcons.hospital,
-    fillColor = Color(0xFF0067C0),
+    fillColor = Color(0xFFE53935),
     glyphColor = Color.White,
 )
 ```
 
-Region-specific symbols are distributed separately (for example `icons-jp`)
-and are selected by the application in the same way.
+`PinGlyphIcon` is ready to use as a MapConductor marker icon. The package also provides `CircleIcon`, `FlagIcon`, `RoundInfoBubbleIcon`, and `RightTailInfoBubbleIcon` for their existing image and label use cases. Rendered bitmap icons are cached by MapConductor Core.
 
-### CircleIcon
+## Regional packs
 
-A simple filled circle icon.
+- [Japan](https://github.com/MapConductor/android-icons-jp)
+- [United States](https://github.com/MapConductor/android-icons-us)
+- [Weather](https://github.com/MapConductor/android-icons-weather)
 
-```kotlin
-val icon = CircleIcon(
-    fillColor = Color.Red,
-    strokeColor = Color.White,
-    strokeWidth = 2.dp,
-    scale = 1f,
-)
+## Contributing icons
 
-val markerState = remember {
-    MarkerState(
-        position = GeoPoint(latitude = 35.6762, longitude = 139.6503),
-        icon = icon,
-    )
-}
+SVG artwork uses a `0 0 24 24` view box and one path. `artwork/manifest.json` is the cross-platform source of truth. Run `node scripts/generate-icon-packs.mjs`, then `node scripts/generate-icon-packs.mjs --check`.
 
-XxxMapView(...) {
-    Marker(markerState)
-}
-```
+<!-- BEGIN GENERATED ICON CATALOG -->
+## Included glyphs
 
-### FlagIcon
+Glyph IDs are stable across Android, iOS, and React.
 
-A flag-shaped icon with a pole.
-
-```kotlin
-val icon = FlagIcon(
-    fillColor = Color.Blue,
-    strokeColor = Color.White,
-    strokeWidth = 2.dp,
-    scale = 1f,
-)
-```
-
-### RightTailInfoBubbleIcon
-
-An info-bubble icon with a drawable, a label, and a snippet.
-The tail points downward-right, anchored at the bottom of the bubble.
-
-```kotlin
-val icon = RightTailInfoBubbleIcon(
-    iconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_car)!!,
-    label = "5h 37m",
-    snippet = "304 miles",
-    fillColor = Color.White,
-    labelTextColor = Color.Black,
-    scale = 1f,
-    iconSize = MarkerIconSize.Small,
-)
-```
-
-### RoundInfoBubbleIcon
-
-A rounded info-bubble icon with a drawable and a label.
-
-```kotlin
-val icon = RoundInfoBubbleIcon(
-    iconDrawable = ContextCompat.getDrawable(context, R.drawable.ic_store)!!,
-    label = "Tokyo",
-    fillColor = Color.White,
-    scale = 1f,
-    iconSize = MarkerIconSize.Small,
-)
-```
-
-------------------------------------------------------------------------
-
-## API Reference
-
-### CircleIcon
-
-| Parameter | Type | Default |
-|---|---|---|
-| `fillColor` | `Color` | `Color.Red` |
-| `strokeColor` | `Color` | `Color.White` |
-| `strokeWidth` | `Dp` | `Settings.Default.iconStroke` |
-| `scale` | `Float` | `1f` |
-| `iconSize` | `Dp` | `Settings.Default.iconSize` |
-
-### FlagIcon
-
-| Parameter | Type | Default |
-|---|---|---|
-| `fillColor` | `Color` | `Color.Red` |
-| `strokeColor` | `Color` | `Color.White` |
-| `strokeWidth` | `Dp` | `Settings.Default.iconStroke` |
-| `scale` | `Float` | `1f` |
-| `iconSize` | `Dp` | `Settings.Default.iconSize` |
-
-### RightTailInfoBubbleIcon
-
-| Parameter | Type | Default |
-|---|---|---|
-| `iconDrawable` | `Drawable` | required |
-| `label` | `String` | required |
-| `snippet` | `String` | required |
-| `fillColor` | `Color` | `Color.LightGray` |
-| `labelTextColor` | `Color` | `Color.Yellow` |
-| `scale` | `Float` | `1f` |
-| `iconSize` | `Dp` | `MarkerIconSize.Small` |
-
-### RoundInfoBubbleIcon
-
-| Parameter | Type | Default |
-|---|---|---|
-| `iconDrawable` | `Drawable` | required |
-| `label` | `String` | required |
-| `fillColor` | `Color` | `Color.White` |
-| `scale` | `Float` | `1f` |
-| `iconSize` | `Dp` | `MarkerIconSize.Small` |
+| Preview | API | Stable ID | Description |
+|---|---|---|---|
+| <img src="docs/icons/hospital.svg" width="40" height="40" alt="Hospital or medical facility"> | `CommonMapIcons.hospital` | `hospital` | Hospital or medical facility |
+<!-- END GENERATED ICON CATALOG -->
